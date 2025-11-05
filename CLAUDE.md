@@ -2,6 +2,14 @@
 - 작업 시작 전: 
     - TASK.md 확인
     - create git issue
+    - create a branch with tag
+        - tag 확인
+            - 예시
+                - [Backend] FastAPI 프로젝트 초기화
+                - []안에 있는 글자가 tag
+        - branch name: feature/backend/fastapi-init
 - 작업 완료 후: 
     - TASK.md 체크표시 (Edit 도구 사용)
-    - request git PR
+    - 두번째 단계에 해당하는 task가 끝나면 request PR
+        - 예시
+            - ### 1.2 백엔드 기본 구조 (FastAPI) 

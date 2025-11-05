@@ -2,6 +2,7 @@
 API v1 라우터
 """
 from fastapi import APIRouter
+from backend.api.v1 import intent
 
 # 메인 라우터 생성
 router = APIRouter()
@@ -14,8 +15,10 @@ async def ping():
     return {"message": "pong", "api_version": "v1"}
 
 
+# 라우터 등록
+router.include_router(intent.router)
+
 # 향후 추가될 라우터들
-# from backend.api.v1.endpoints import intent, rag, feedback
-# router.include_router(intent.router, prefix="/intent", tags=["intent"])
-# router.include_router(rag.router, prefix="/rag", tags=["rag"])
-# router.include_router(feedback.router, prefix="/feedback", tags=["feedback"])
+# from backend.api.v1 import rag, feedback
+# router.include_router(rag.router)
+# router.include_router(feedback.router)
