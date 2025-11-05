@@ -1,0 +1,21 @@
+"""
+API v1 라우터
+"""
+from fastapi import APIRouter
+
+# 메인 라우터 생성
+router = APIRouter()
+
+
+# 헬스 체크용 임시 엔드포인트
+@router.get("/ping", tags=["health"])
+async def ping():
+    """API 라우터 연결 확인"""
+    return {"message": "pong", "api_version": "v1"}
+
+
+# 향후 추가될 라우터들
+# from backend.api.v1.endpoints import intent, rag, feedback
+# router.include_router(intent.router, prefix="/intent", tags=["intent"])
+# router.include_router(rag.router, prefix="/rag", tags=["rag"])
+# router.include_router(feedback.router, prefix="/feedback", tags=["feedback"])

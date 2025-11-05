@@ -1,0 +1,41 @@
+{
+  "name": "mockinjay",
+  "version": "1.0.0",
+  "description": "CKD Xê ¿– AI W - U1 Äù 0•D ò XÃ Q&A W ‹§\",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm start",
+    "test": "cd frontend && npm test",
+    "lint": "cd frontend && npm run lint",
+    "format": "cd frontend && npm run format"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MockingJayDec/MockinJay.git"
+  },
+  "keywords": [
+    "CKD",
+    "medical",
+    "chatbot",
+    "AI",
+    "healthcare",
+    "RAG",
+    "LLM"
+  ],
+  "author": "MockinJay Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MockingJayDec/MockinJay/issues"
+  },
+  "homepage": "https://github.com/MockingJayDec/MockinJay#readme",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0"
+  },
+  "workspaces": [
+    "frontend"
+  ]
+}
