@@ -36,10 +36,6 @@
      ## 완료된 작업
      - Closes #10: Few-shot 프롬프트 작성
      - Closes #11: LLM 호출 함수 구현
-     - Closes #12: 의도 분류 엔드포인트
-     - Closes #13: 응급 상황 감지
-     - Closes #14: 의학적 판단 차단
-     - Closes #15: 테스트 작성
      ```
 3. Base branch: `dev` (또는 지정된 브랜치)
 
@@ -51,14 +47,13 @@
 │
 ├─ Issue #10: [AI] Few-shot 프롬프트 작성      ← Task
 ├─ Issue #11: [Backend] LLM 호출 함수 구현      ← Task
-├─ Issue #12: [Backend] 의도 분류 엔드포인트    ← Task
 │
 └─ (모든 Task 완료) → PR: Feature 1.3: 질문 의도 예측 시스템
-                        - Closes #10, #11, #12
+                        - Closes #10, #11
 ```
 
 ## 주의사항
-- Feature당 하나의 브랜치만 생성 (Task별 브랜치 X)
+- Feature당 하나의 브랜치만 생성
 - Task는 Issue로 추적, Feature 브랜치에서 작업
 - Feature 완료 시 PR 생성 (모든 관련 Issue 자동 종료)
 - Milestone은 여러 Feature PR이 병합되면 완료 
