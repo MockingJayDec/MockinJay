@@ -209,12 +209,23 @@
   - [x] [Backend] 에러 시나리오 테스트
 
 ### Feature 1.9: 성능 벤치마크 및 최적화
-- [ ] **성능 측정**
-  - [ ] [Backend] 응답 시간 모니터링 (P95 < 25초)
-  - [ ] [AI] 의도 분류 정확도 측정 (90% 이상)
-  - [ ] [Backend] 시스템 오류율 측정 (< 1%)
+- [x] **성능 측정**
+  - [x] [Backend] 응답 시간 모니터링 (P50, P95, P99 백분위수)
+  - [x] [AI] 의도 분류 정확도 측정 (전체 및 의도별)
+  - [x] [Backend] 시스템 오류율 측정
 
-- [ ] **최적화**
+- [x] **성능 모니터링 구현**
+  - [x] [Backend] PerformanceMonitor 서비스 구현
+  - [x] [Backend] ChatPipeline에 성능 추적 통합
+  - [x] [Backend] Redis 기반 성능 데이터 캐싱 (선택적)
+  - [x] [Backend] 성능 메트릭 API 엔드포인트 (/api/v1/performance/metrics, /thresholds, /reset)
+  - [x] [Backend] 성능 임계값 검증 (P95 < 25초, 정확도 >= 90%, 에러율 < 1%)
+
+- [x] **테스트**
+  - [x] [Backend] PerformanceMonitor 단위 테스트 (12개)
+  - [x] [Backend] 성능 API 통합 테스트 (8개)
+
+- [ ] **최적화** (향후 실제 데이터 기반)
   - [ ] [Backend] LLM API 호출 최적화
   - [ ] [Backend] 벡터 검색 최적화
   - [ ] [Backend] 캐싱 전략 개선

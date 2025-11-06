@@ -31,6 +31,10 @@ router.include_router(summarizer.router)
 from backend.api.v1 import chat
 router.include_router(chat.router)
 
+# 성능 모니터링 라우터 추가
+from backend.api.v1 import performance
+router.include_router(performance.router)
+
 # 향후 추가될 라우터들
 # from backend.api.v1 import feedback
 # router.include_router(feedback.router)

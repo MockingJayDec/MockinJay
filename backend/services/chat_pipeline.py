@@ -10,6 +10,7 @@ from backend.services.intent import IntentClassifier, EmergencyDetector, Medical
 from backend.services.rag_search import RAGSearchService
 from backend.services.summarizer import DocumentSummarizer
 from backend.services.cache import cache_service
+from backend.services.performance import performance_monitor
 from backend.core.config import settings
 
 logger = logging.getLogger(__name__)
@@ -30,6 +31,7 @@ class ChatPipeline:
         self.rag_service = RAGSearchService()
         self.summarizer = DocumentSummarizer()
         self.cache = cache_service
+        self.performance = performance_monitor
         logger.info("Chat Pipeline initialized")
 
     async def process_question(
@@ -108,10 +110,29 @@ class ChatPipeline:
             processing_time = time.time() - start_time
             logger.info(f"Pipeline completed in {processing_time:.2f}s")
 
+            # 9. 성능 모니터링 기록
+            self.performance.record_response_time(
+                response_time=processing_time,
+                intent=intent,
+                question=question
+            )
+            self.performance.record_intent_prediction(
+                question=question,
+                predicted_intent=intent,
+                confidence=confidence
+            )
+
             return response
 
         except Exception as e:
             logger.error(f"Pipeline error: {str(e)}", exc_info=True)
+
+            # 에러 기록
+            self.performance.record_error(
+                error_type=type(e).__name__,
+                error_message=str(e)
+            )
+
             return self._create_error_response(question, str(e), start_time)
 
     async def _classify_intent(self, question: str) -> Dict[str, Any]:
