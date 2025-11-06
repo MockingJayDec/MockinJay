@@ -126,30 +126,30 @@
   - [ ] [AI] 임베딩 생성 및 업로드
 
 ### Feature 1.6: RAG 검색 엔진
-- [ ] **RAG 검색 로직**
-  - [ ] [AI] 쿼리 임베딩 생성 함수
-  - [ ] [Backend] 벡터 유사도 검색 함수
-  - [ ] [Backend] Top-K 결과 반환 (기본값: 5)
-  - [ ] [Backend] 유사도 점수 계산 및 정렬
-  - [ ] [Backend] 중복 제거 로직
+- [x] **RAG 검색 로직**
+  - [x] [AI] 쿼리 임베딩 생성 함수
+  - [x] [Backend] 벡터 유사도 검색 함수
+  - [x] [Backend] Top-K 결과 반환 (기본값: 5)
+  - [x] [Backend] 유사도 점수 계산 및 정렬
+  - [x] [Backend] 중복 제거 로직
 
-- [ ] **PubMed API 통합 (RESEARCH)**
-  - [ ] [Backend] PubMed API 클라이언트 구현
-  - [ ] [Backend] 조건부 API 호출 로직
-  - [ ] [Backend] API 응답 파싱
-  - [ ] [Backend] 속도 제한 처리 (rate limiting)
-  - [ ] [Backend] 캐싱 전략 (Redis)
+- [x] **PubMed API 통합 (RESEARCH)**
+  - [x] [Backend] PubMed API 클라이언트 구현
+  - [x] [Backend] 조건부 API 호출 로직
+  - [x] [Backend] API 응답 파싱
+  - [x] [Backend] 속도 제한 처리 (rate limiting)
+  - [x] [Backend] 캐싱 전략 (Redis)
 
-- [ ] **RAG 엔드포인트**
-  - [ ] [Backend] POST `/api/v1/rag/search` 구현
-  - [ ] [Backend] 입력: 질문, 의도, 선택된 DB
-  - [ ] [Backend] 출력: 상위 5개 관련 문서
-  - [ ] [Backend] 검색 시간 < 5초 최적화
+- [x] **RAG 엔드포인트**
+  - [x] [Backend] POST `/api/v1/rag/search` 구현
+  - [x] [Backend] 입력: 질문, 의도, 선택된 DB
+  - [x] [Backend] 출력: 상위 5개 관련 문서
+  - [ ] [Backend] 검색 시간 < 5초 최적화 (벤치마크 필요)
 
-- [ ] **테스트**
-  - [ ] [Backend] 검색 관련성 테스트
-  - [ ] [Backend] 검색 시간 벤치마크
-  - [ ] [Backend] 엣지 케이스 테스트 (결과 없음, 단일 결과)
+- [x] **테스트**
+  - [x] [Backend] 검색 관련성 테스트
+  - [ ] [Backend] 검색 시간 벤치마크 (성능 측정 필요)
+  - [x] [Backend] 엣지 케이스 테스트 (결과 없음, 단일 결과)
 
 ### Feature 1.7: 논문/문서 요약
 - [ ] **요약 생성 로직**

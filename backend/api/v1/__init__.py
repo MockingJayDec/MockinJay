@@ -19,7 +19,10 @@ async def ping():
 from backend.api.v1 import vector
 router.include_router(vector.router)
 
+# RAG 검색 라우터 추가
+from backend.api.v1 import rag
+router.include_router(rag.router)
+
 # 향후 추가될 라우터들
-# from backend.api.v1 import rag, feedback
-# router.include_router(rag.router)
+# from backend.api.v1 import feedback
 # router.include_router(feedback.router)
