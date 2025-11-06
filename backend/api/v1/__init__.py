@@ -14,6 +14,10 @@ async def ping():
     return {"message": "pong", "api_version": "v1"}
 
 
+# Vector DB 라우터 추가
+from backend.api.v1 import vector
+router.include_router(vector.router)
+
 # 향후 추가될 라우터들
 # from backend.api.v1.endpoints import intent, rag, feedback
 # router.include_router(intent.router, prefix="/intent", tags=["intent"])
