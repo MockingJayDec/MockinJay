@@ -102,28 +102,28 @@
   - [x] [Backend] 의도별 라우팅 정확성 테스트
 
 ### Feature 1.5: 데이터 수집 및 임베딩
-- [ ] **QnA DB (MEDICAL_INFO)**
-  - [ ] [AI] CKD 관련 Q&A 데이터 100개 수집
+- [x] **QnA DB (MEDICAL_INFO)**
+  - [x] [AI] CKD 관련 Q&A 데이터 100개 수집
     - 크레아티닌, GFR, 병기별 관리 등
   - [ ] [AI] 의료 전문가 검증 (가능한 경우)
-  - [ ] [AI] 임베딩 모델 선택 (OpenAI, Sentence-Transformers)
-  - [ ] [AI] 데이터 임베딩 생성
-  - [ ] [Backend] 벡터 DB에 업로드
-  - [ ] [AI] 메타데이터 필드 정의 (병기, 카테고리 등)
+  - [x] [AI] 임베딩 모델 선택 (Sentence-Transformers: paraphrase-multilingual-mpnet-base-v2)
+  - [x] [AI] 데이터 임베딩 생성
+  - [x] [Backend] 벡터 DB에 업로드 (100개 문서)
+  - [x] [AI] 메타데이터 필드 정의 (병기, 카테고리 등)
 
-- [ ] **Paper DB (RESEARCH)**
-  - [ ] [Backend] PubMed API 계정 설정
-  - [ ] [AI] CKD 관련 논문 초록 100개 수집
-  - [ ] [Backend] 논문 메타데이터 추출 (제목, 저자, 연도, DOI)
-  - [ ] [AI] 논문 초록 임베딩 생성
-  - [ ] [Backend] 벡터 DB에 업로드
+- [x] **Paper DB (RESEARCH)**
+  - [x] [Backend] PubMed API 설정 (HTTP 기반)
+  - [x] [AI] CKD 관련 논문 초록 100개 수집
+  - [x] [Backend] 논문 메타데이터 추출 (제목, 저자, 연도, DOI)
+  - [x] [AI] 논문 초록 임베딩 생성
+  - [x] [Backend] 벡터 DB에 업로드 (100개 문서)
 
-- [ ] **Policy DB (POLICY)**
-  - [ ] [AI] CKD 진료지침 문서 수집
+- [x] **Policy DB (POLICY)**
+  - [x] [AI] CKD 진료지침 문서 수집 (20개 가이드라인)
     - 대한신장학회 가이드라인
     - 국제 가이드라인 (KDIGO 등)
-  - [ ] [AI] 가이드라인 문서 청크 분할
-  - [ ] [AI] 임베딩 생성 및 업로드
+  - [x] [AI] 가이드라인 문서 청크 분할
+  - [x] [AI] 임베딩 생성 및 업로드 (20개 문서)
 
 ### Feature 1.6: RAG 검색 엔진
 - [x] **RAG 검색 로직**
