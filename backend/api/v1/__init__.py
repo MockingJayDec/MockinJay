@@ -23,6 +23,10 @@ router.include_router(vector.router)
 from backend.api.v1 import rag
 router.include_router(rag.router)
 
+# 문서 요약 라우터 추가
+from backend.api.v1 import summarizer
+router.include_router(summarizer.router)
+
 # 향후 추가될 라우터들
 # from backend.api.v1 import feedback
 # router.include_router(feedback.router)
