@@ -28,9 +28,10 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str = ""
     ANTHROPIC_API_KEY: str = ""
 
-    # Vector Database
-    PINECONE_API_KEY: str = ""
-    PINECONE_ENVIRONMENT: str = ""
+    # Vector Database (ChromaDB - Free, Local)
+    CHROMA_PERSIST_DIRECTORY: str = "data/chroma_db"
+    CHROMA_COLLECTION_PREFIX: str = "mockinjay"
+    # ChromaDB doesn't require API keys - runs locally!
 
     # Database
     DATABASE_URL: str = "postgresql://user:password@localhost/mockinjay"

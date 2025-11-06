@@ -10,10 +10,11 @@ anthropic==0.7.7
 langchain==0.1.0
 langchain-openai==1.0.0
 
-# Vector Database
-pinecone-client==3.0.0
-# weaviate-client==4.4.0
-# qdrant-client==1.7.0
+# Vector Database (Using Free ChromaDB)
+chromadb==0.4.22
+# pinecone-client==3.0.0  # Paid service
+# weaviate-client==4.4.0  # Requires external server
+# qdrant-client==1.7.0    # Requires external server
 
 # Database
 psycopg2-binary==2.9.9

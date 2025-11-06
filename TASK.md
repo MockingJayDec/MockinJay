@@ -85,21 +85,21 @@
   - [x] [Backend] 의학적 판단 차단 테스트
 
 ### Feature 1.4: 벡터 DB 선택 시스템
-- [ ] **벡터 DB 선택**
-  - [ ] [Backend] Pinecone, Weaviate, Qdrant 중 선택
-  - [ ] [Backend] 벡터 DB 계정 생성 및 API 키 설정
-  - [ ] [Backend] Python 클라이언트 라이브러리 설치
+- [x] **벡터 DB 선택**
+  - [x] [Backend] ChromaDB 선택 (100% 무료, 로컬 실행)
+  - [x] [Backend] ChromaDB 설정 (API 키 불필요)
+  - [x] [Backend] Python 클라이언트 라이브러리 설치
 
-- [ ] **의도별 DB 라우팅 로직**
-  - [ ] [Backend] MEDICAL_INFO → QnA DB 매핑
-  - [ ] [Backend] RESEARCH → Paper DB 매핑
-  - [ ] [Backend] POLICY → Policy DB 매핑
-  - [ ] [Backend] 라우팅 설정 파일 (config.yaml)
-  - [ ] [Backend] DB 선택 함수 구현
+- [x] **의도별 DB 라우팅 로직**
+  - [x] [Backend] MEDICAL_INFO → QnA DB 매핑
+  - [x] [Backend] RESEARCH → Paper DB 매핑
+  - [x] [Backend] POLICY → Policy DB 매핑
+  - [x] [Backend] 라우팅 설정 (config.py에 통합)
+  - [x] [Backend] DB 선택 함수 구현
 
-- [ ] **테스트**
-  - [ ] [Backend] DB 연결 테스트
-  - [ ] [Backend] 의도별 라우팅 정확성 테스트
+- [x] **테스트**
+  - [x] [Backend] DB 연결 테스트
+  - [x] [Backend] 의도별 라우팅 정확성 테스트
 
 ### Feature 1.5: 데이터 수집 및 임베딩
 - [ ] **QnA DB (MEDICAL_INFO)**

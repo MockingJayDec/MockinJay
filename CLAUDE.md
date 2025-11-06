@@ -1,5 +1,10 @@
 **워크플로우 규칙**:
 
+## 🚨 중요: Base Branch 설정
+- **모든 Feature 브랜치는 `dev`에서 생성**
+- **모든 PR은 `dev`를 base로 설정**
+- **절대 `main`으로 직접 PR 생성 금지**
+
 ## 작업 단위 정의
 - **Milestone**: 주요 릴리즈 단계 (## 헤더, 예: `## Milestone 1: 핵심 의도 MVP`)
 - **Feature**: PR 생성 단위 (### 헤더, 예: `### Feature 1.3: 질문 의도 예측 시스템`)
@@ -37,7 +42,7 @@
      - Closes #10: Few-shot 프롬프트 작성
      - Closes #11: LLM 호출 함수 구현
      ```
-3. Base branch: `dev` (또는 지정된 브랜치)
+
 
 ## 예시 워크플로우
 ```
