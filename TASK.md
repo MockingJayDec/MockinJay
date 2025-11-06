@@ -182,31 +182,31 @@
   - [x] [Backend] 일관된 형식 검증
 
 ### Feature 1.8: 통합 파이프라인
-- [ ] **End-to-End 파이프라인**
-  - [ ] [Backend] POST `/api/v1/chat` 엔드포인트 구현
-  - [ ] [Backend] 입력: 사용자 질문
-  - [ ] [Backend] 파이프라인 실행:
+- [x] **End-to-End 파이프라인**
+  - [x] [Backend] POST `/api/v1/chat` 엔드포인트 구현
+  - [x] [Backend] 입력: 사용자 질문
+  - [x] [Backend] 파이프라인 실행:
     1. 의도 분류
     2. DB 선택
     3. RAG 검색
     4. 요약 생성
     5. 응답 검증
-  - [ ] [Backend] 출력: 최종 응답 + 메타데이터
+  - [x] [Backend] 출력: 최종 응답 + 메타데이터
 
-- [ ] **비동기 처리**
-  - [ ] [Backend] FastAPI 비동기 함수 구현
-  - [ ] [Backend] 장기 실행 LLM 호출 비동기 처리
-  - [ ] [Backend] 타임아웃 설정 (20초)
+- [x] **비동기 처리**
+  - [x] [Backend] FastAPI 비동기 함수 구현
+  - [x] [Backend] 장기 실행 LLM 호출 비동기 처리
+  - [x] [Backend] 타임아웃 설정 (20초)
 
-- [ ] **캐싱 전략**
-  - [ ] [Backend] Redis 설정
-  - [ ] [Backend] 의도 분류 결과 캐싱 (1시간)
-  - [ ] [Backend] RAG 검색 결과 캐싱 (24시간)
+- [x] **캐싱 전략**
+  - [x] [Backend] Redis 설정 (이미 구현됨)
+  - [x] [Backend] 의도 분류 결과 캐싱 (1시간)
+  - [x] [Backend] RAG 검색 결과 캐싱 (24시간)
 
-- [ ] **테스트**
-  - [ ] [Backend] End-to-End 통합 테스트
-  - [ ] [Backend] 전체 응답 시간 < 25초 검증
-  - [ ] [Backend] 에러 시나리오 테스트
+- [x] **테스트**
+  - [x] [Backend] End-to-End 통합 테스트
+  - [ ] [Backend] 전체 응답 시간 < 25초 검증 (LLM API 키 필요)
+  - [x] [Backend] 에러 시나리오 테스트
 
 ### Feature 1.9: 성능 벤치마크 및 최적화
 - [ ] **성능 측정**
