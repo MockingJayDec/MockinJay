@@ -148,7 +148,6 @@
 
 - [x] **테스트**
   - [x] [Backend] 검색 관련성 테스트
-  - [ ] [Backend] 검색 시간 벤치마크 (성능 측정 필요)
   - [x] [Backend] 엣지 케이스 테스트 (결과 없음, 단일 결과)
 
 ### Feature 1.7: 논문/문서 요약
@@ -171,7 +170,6 @@
   - [ ] [Backend] POST `/api/v1/summarize` 구현
   - [ ] [Backend] 입력: 5개 문서
   - [ ] [Backend] 출력: 5개 요약
-  - [ ] [Backend] 전체 생성 시간 < 10초
 
 - [ ] **응답 검증 레이어**
   - [ ] [AI] 의학적 정확성 체크 로직
@@ -230,100 +228,11 @@
   - [ ] [AI] 의도 분류 정확도 리포트
 
 - [ ] **배포 준비**
-  - [ ] [Backend] Docker 컨테이너화
-  - [ ] [Backend] docker-compose.yml 작성
   - [ ] [Backend] 환경 변수 문서화
   - [ ] [Backend] 로컬 테스트 환경 구축
 
 ---
 
-## 📋 Milestone 2: 환자 지원 기능 (6주)
-**목표**: 환자 중심 의도 추가 (DIET_INFO, WELFARE_INFO, HEALTH_RECORD)
-
-### Feature 2.1: DIET_INFO (식단 정보)
-- [ ] **Diet DB 구축**
-  - [ ] [AI] 저칼륨 식단 정보 수집 (50개 항목)
-  - [ ] [AI] 저나트륨 식단 정보 수집 (50개 항목)
-  - [ ] [AI] 저단백 식단 정보 수집 (50개 항목)
-  - [ ] [AI] 식품별 영양 성분 데이터 수집
-    - 칼륨, 나트륨, 단백질 함량
-  - [ ] [AI] CKD 병기별 권장/제한 식품 리스트
-  - [ ] [AI] 임베딩 생성 및 벡터 DB 업로드
-
-- [ ] **의도 학습 데이터**
-  - [ ] [AI] DIET_INFO 의도 예시 100개 수집
-  - [ ] [AI] Few-shot 프롬프트 업데이트
-
-- [ ] **식단 추천 로직**
-  - [ ] [Backend] 병기별 식단 필터링
-  - [ ] [AI] 식품 대체 추천 알고리즘
-  - [ ] [Backend] 영양 성분 계산기
-
-- [ ] **테스트**
-  - [ ] [Backend] 식단 추천 정확성 테스트
-  - [ ] [Backend] 병기별 필터링 검증
-
-### Feature 2.2: WELFARE_INFO (복지 정보)
-- [ ] **Welfare DB 구축**
-  - [ ] [AI] 4단계 복지 안내 데이터 수집
-    1. 자격요건
-    2. 신청방법
-    3. 제출서류
-    4. 수급절차
-  - [ ] [AI] 투석 환자 지원금 정보
-  - [ ] [AI] 장애등급 신청 정보
-  - [ ] [AI] 의료비 지원 정보
-  - [ ] [AI] 지역별 복지 정보 (전국 주요 도시)
-  - [ ] [AI] 출처: 보건복지부, 국민건강보험공단
-  - [ ] [AI] 임베딩 생성 및 벡터 DB 업로드
-
-- [ ] **의도 학습 데이터**
-  - [ ] [AI] WELFARE_INFO 의도 예시 100개 수집
-
-- [ ] **4단계 복지 안내 시스템**
-  - [ ] [Backend] 단계별 정보 제공 로직
-  - [ ] [Backend] 지역별 정보 필터링
-  - [ ] [Backend] 온라인 신청 링크 자동 생성
-
-- [ ] **테스트**
-  - [ ] [Backend] 4단계 안내 완전성 검증
-  - [ ] [Backend] 지역별 정보 정확성 테스트
-
-### Feature 2.3: HEALTH_RECORD (건강 기록)
-- [ ] **데이터베이스 설계**
-  - [ ] [Backend] 사용자 테이블 스키마
-  - [ ] [Backend] 건강 기록 테이블 스키마
-    - 크레아티닌, GFR, 혈압, 체중 등
-  - [ ] [Backend] 시계열 데이터 구조
-  - [ ] [Backend] PostgreSQL 또는 TimescaleDB 선택
-
-- [ ] **의도 학습 데이터**
-  - [ ] [AI] HEALTH_RECORD 의도 예시 100개 수집
-
-- [ ] **건강 기록 저장/조회 API**
-  - [ ] [Backend] POST `/api/v1/health/record` - 기록 저장
-  - [ ] [Backend] GET `/api/v1/health/record/{user_id}` - 기록 조회
-  - [ ] [Backend] GET `/api/v1/health/trend/{user_id}` - 추이 분석
-
-- [ ] **추이 분석 로직**
-  - [ ] [Backend] 이전 기록과 비교
-  - [ ] [AI] 악화/호전 판단 알고리즘
-  - [ ] [Backend] 알림 트리거 조건 설정
-
-- [ ] **시각화 엔진**
-  - [ ] [Backend] 시계열 그래프 생성 (Plotly, Chart.js)
-  - [ ] [Backend] 추이 그래프 API 엔드포인트
-  - [ ] [Backend] 병기별 정상 범위 표시
-
-- [ ] **개인정보 보호**
-  - [ ] [Backend] 데이터 암호화 (저장 시)
-  - [ ] [Backend] 사용자 인증 (JWT)
-  - [ ] [Backend] 접근 제어 (RBAC)
-
-- [ ] **테스트**
-  - [ ] [Backend] 저장/조회 기능 테스트
-  - [ ] [Backend] 추이 분석 정확성 검증
-  - [ ] [Backend] 보안 테스트
 
 ### Feature 2.4: 프론트엔드 기본 구조
 - [ ] **React 프로젝트 설정**
@@ -334,10 +243,7 @@
 
 - [ ] **UI 컴포넌트**
   - [ ] [Frontend] 채팅 인터페이스
-  - [ ] [Frontend] 건강 기록 입력 폼
   - [ ] [Frontend] 추이 그래프 컴포넌트
-  - [ ] [Frontend] 식단 추천 카드
-  - [ ] [Frontend] 복지 안내 단계별 UI
 
 - [ ] **API 통합**
   - [ ] [Frontend] Axios 또는 Fetch API 설정
@@ -350,43 +256,6 @@
 
 ---
 
-## 📋 Milestone 3: 피드백 및 학습 시스템 (4주)
-**목표**: 품질 개선 및 환자 교육 (LEARNING, CHIT_CHAT, 피드백 시스템)
-
-### Feature 3.1: LEARNING (레벨별 퀴즈)
-- [ ] **Quiz DB 구축**
-  - [ ] [AI] 초급 퀴즈 50개 작성
-    - GFR, 크레아티닌 기본 개념
-  - [ ] [AI] 중급 퀴즈 50개 작성
-    - 식단 관리, 약물 관리
-  - [ ] [AI] 고급 퀴즈 50개 작성
-    - 병기별 관리, 합병증 예방
-  - [ ] [AI] 퀴즈 스키마 정의
-    ```json
-    {
-      "question": "GFR이란 무엇인가요?",
-      "options": ["A", "B", "C", "D"],
-      "correct_answer": "A",
-      "explanation": "GFR은...",
-      "level": "초급",
-      "category": "기본 개념"
-    }
-    ```
-  - [ ] [AI] 임베딩 생성 및 벡터 DB 업로드
-
-- [ ] **의도 학습 데이터**
-  - [ ] [AI] LEARNING 의도 예시 100개 수집
-
-- [ ] **퀴즈 엔진**
-  - [ ] [Backend] GET `/api/v1/quiz/random` - 랜덤 퀴즈
-  - [ ] [Backend] POST `/api/v1/quiz/answer` - 답변 제출
-  - [ ] [Backend] GET `/api/v1/quiz/explanation` - 해설 조회
-  - [ ] [Backend] 난이도 선택 로직
-  - [ ] [Backend] 사용자 레벨 추적 (선택 사항)
-
-- [ ] **테스트**
-  - [ ] [Backend] 퀴즈 난이도 분포 검증
-  - [ ] [Backend] 답변 평가 정확성 테스트
 
 ### Feature 3.2: CHIT_CHAT (일상 대화)
 - [ ] **의도 학습 데이터**
@@ -497,13 +366,6 @@
   - [ ] [Backend] 캐싱 전략 개선
   - [ ] [Frontend] CDN 설정 (프론트엔드)
 
-- [ ] **보안 강화**
-  - [ ] [Backend] HTTPS 설정
-  - [ ] [Backend] API 속도 제한 (rate limiting)
-  - [ ] [Backend] CSRF 방지
-  - [ ] [Frontend] XSS 방지
-  - [ ] [Backend] SQL Injection 방지
-
 - [ ] **모니터링 및 로깅**
   - [ ] [Backend] 애플리케이션 로그 (Winston, Loguru)
   - [ ] [Backend] 에러 추적 (Sentry)
@@ -516,12 +378,6 @@
   - [ ] [Backend] 도메인 설정
   - [ ] [Backend] SSL 인증서 설정
   - [ ] [Backend] 데이터베이스 프로덕션 설정
-
-- [ ] **CI/CD 파이프라인**
-  - [ ] [Backend] GitHub Actions 또는 GitLab CI 설정
-  - [ ] [Backend] 자동 테스트 실행
-  - [ ] [Backend] 자동 배포 설정
-  - [ ] [Backend] 롤백 전략
 
 - [ ] **문서화**
   - [ ] [Backend] 사용자 가이드
@@ -547,8 +403,6 @@
 
 ### Feature 5.2: 데이터 업데이트
 - [ ] [Backend] **Paper DB**: 주간 PubMed 업데이트
-- [ ] [AI] **Welfare DB**: 분기별 복지 정보 업데이트
-- [ ] [AI] **Diet DB**: 월간 식단 정보 업데이트
 - [ ] [AI] **Policy DB**: 가이드라인 개정 시 업데이트
 
 ### Feature 5.3: 신규 기능 개발
@@ -582,81 +436,12 @@
 
 ---
 
-## 🎓 학습 및 참고 자료
-
-### 기술 문서
-- [ ] [Backend] FastAPI 공식 문서 학습
-- [ ] [Frontend] React 공식 문서 학습
-- [ ] [AI] LangChain 공식 문서 학습
-- [ ] [Backend] 벡터 DB 공식 문서 (Pinecone/Weaviate/Qdrant)
-- [ ] [Backend] PubMed API 문서
-
-### 의료 자료
-- [ ] [AI] 대한신장학회 CKD 가이드라인
-- [ ] [AI] KDIGO CKD 가이드라인
-- [ ] [AI] 식품영양성분표
-- [ ] [AI] 보건복지부 복지 정보
 
 ### 프로젝트 문서
 - [ ] [AI] PRD (prd_ko.md) 검토
 - [ ] [AI] 기능 명세서 (fuction specification.md) 검토
 - [ ] [Backend] API 문서 작성 및 유지
 - [ ] [Backend] 아키텍처 다이어그램 작성
-
----
-
-## ✅ 완료 기준
-
-### Milestone 1 완료 기준
-- [ ] [AI] 3개 의도 (MEDICAL_INFO, RESEARCH, POLICY) 90% 이상 정확도
-- [ ] [Backend] 질문 → 요약 파이프라인 작동
-- [ ] [Backend] 응급 상황 감지 시스템 작동
-- [ ] [Backend] 응답 시간 < 25초
-- [ ] [Backend] API 문서 작성 완료
-
-### Milestone 2 완료 기준
-- [ ] [AI] 6개 의도 모두 작동
-- [ ] [Backend] 건강 기록 저장/조회 기능 작동
-- [ ] [Backend] 4단계 복지 안내 시스템 작동
-- [ ] [Frontend] 프론트엔드 기본 UI 완성
-
-### Milestone 3 완료 기준
-- [ ] [AI] 8개 의도 모두 작동
-- [ ] [Backend] 퀴즈 시스템 작동
-- [ ] [Frontend] 휴먼 피드백 인터페이스 완성
-- [ ] [Frontend] 피드백 통계 대시보드 작동
-
-### Milestone 4 완료 기준
-- [ ] [AI] 10개 의도 모두 작동
-- [ ] [Backend] 비윤리적 요청 차단 시스템 작동
-- [ ] [Backend] 프로덕션 배포 완료
-- [ ] [Backend] 모니터링 시스템 작동
-
-### Milestone 5 완료 기준
-- [ ] [Backend] 모든 품질 지표 목표 달성
-- [ ] [Backend] 월간 데이터 업데이트 프로세스 확립
-- [ ] [AI] 피드백 기반 개선 사이클 확립
-
----
-
-## 📝 주의사항
-
-### 의료 안전
-- ⚠️ **절대 의학적 진단이나 치료 권장 금지**
-- ⚠️ **응급 상황 시 즉시 119 안내**
-- ⚠️ **모든 의료 정보는 참고용이며 의사 상담 권고**
-
-### 데이터 보안
-- 🔒 환자 건강 기록 암호화 필수
-- 🔒 API 키 및 비밀번호 .env 파일 관리
-- 🔒 개인정보 보호법 (PIPA) 준수
-- 🔒 HIPAA 고려사항 검토
-
-### 품질 관리
-- ✅ 모든 의료 정보는 전문가 검증
-- ✅ 정기적인 피드백 데이터 분석
-- ✅ 지속적인 정확도 모니터링
-- ✅ 사용자 피드백 적극 반영
 
 ---
 
