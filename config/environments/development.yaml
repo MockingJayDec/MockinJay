@@ -1,0 +1,34 @@
+# Development Environment Configuration
+
+environment: "development"
+
+models:
+  embedding:
+    default: "mpnet-multilingual"
+    cache_enabled: false
+    device: "cpu"
+
+  llm:
+    intent_classification: "gpt-4o-mini"
+    summarization: "gpt-4o-mini"  # dev에서는 mini 사용 (비용 절감)
+    temperature: 0.7
+
+agents:
+  orchestrator:
+    strategy: "sequential"
+    timeout: 60  # seconds
+
+  logging:
+    level: "DEBUG"
+    log_agent_execution: true
+    log_llm_calls: true
+
+vector_db:
+  provider: "chromadb"
+  persist_directory: "data/chroma_db"
+  cache_enabled: false
+
+performance:
+  enable_profiling: true
+  track_latency: true
+  max_concurrent_requests: 10

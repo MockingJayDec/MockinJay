@@ -26,7 +26,7 @@ router = APIRouter(prefix="/chat", tags=["chat"])
     6. 안전성 검증
     7. 최종 응답 반환
 
-    **타임아웃**: 20초
+    **타임아웃**: 30초
     """,
     responses={
         200: {"description": "성공적으로 처리됨"},
@@ -48,14 +48,14 @@ async def process_chat(request: ChatRequest):
     try:
         logger.info(f"Chat request received: {request.question[:50]}...")
 
-        # 타임아웃 20초 설정
+        # 타임아웃 30초 설정
         response = await asyncio.wait_for(
             chat_pipeline.process_question(
                 question=request.question,
                 user_id=request.user_id,
                 context=request.context
             ),
-            timeout=20.0
+            timeout=30.0
         )
 
         logger.info(f"Chat response generated successfully")

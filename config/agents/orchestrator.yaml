@@ -1,0 +1,57 @@
+# Orchestrator Agent Configuration
+
+strategy: "sequential"  # sequential | parallel
+
+agents:
+  safety:
+    enabled: true
+    priority: 1
+    class: "SafetyAgent"
+    config:
+      check_emergency: true
+      check_medical_judgment: true
+
+  intent:
+    enabled: true
+    priority: 2
+    class: "IntentAgent"
+    llm_model: "gpt-4o-mini"
+    config:
+      confidence_threshold: 0.7
+      few_shot_examples: 5
+
+  retrieval:
+    enabled: true
+    priority: 3
+    class: "RetrievalAgent"
+    embedding_model: "mpnet-multilingual"
+    config:
+      top_k: 5
+      similarity_threshold: 0.5
+      use_cache: true
+
+  summarization:
+    enabled: true
+    priority: 4
+    class: "SummarizationAgent"
+    llm_model: "gpt-4o"
+    config:
+      max_length: 500
+      style: "medical"
+
+  medical_validation:
+    enabled: true
+    priority: 5
+    class: "MedicalAgent"
+    config:
+      validate_safety: true
+      check_accuracy: true
+
+# 실험 모드
+experiment:
+  strategy: "sequential"
+  agents:
+    intent:
+      llm_model: "claude-3-5-sonnet"  # 다른 LLM 테스트
+    retrieval:
+      embedding_model: "bge-m3"  # 다른 임베딩 테스트

@@ -1,0 +1,56 @@
+# LLM Models Configuration
+
+default:
+  intent_classification: "gpt-4o-mini"
+  summarization: "gpt-4o"
+  qa_generation: "gpt-4o-mini"
+
+models:
+  gpt-4o:
+    class: "OpenAILLM"
+    context_window: 128000
+    provider: "openai"
+    temperature: 0.7
+    max_tokens: 2000
+    cost_per_1k_tokens: 0.005  # USD
+    description: "가장 강력한 모델 (요약, QA 생성용)"
+
+  gpt-4o-mini:
+    class: "OpenAILLM"
+    context_window: 128000
+    provider: "openai"
+    temperature: 0.3
+    max_tokens: 1000
+    cost_per_1k_tokens: 0.00015  # USD
+    description: "빠르고 저렴한 모델 (의도 분류용)"
+
+  gpt-4-turbo:
+    class: "OpenAILLM"
+    context_window: 128000
+    provider: "openai"
+    temperature: 0.7
+    max_tokens: 2000
+    cost_per_1k_tokens: 0.01  # USD
+
+  # 추후 추가할 모델들 (실험용)
+  # claude-3-5-sonnet:
+  #   class: "AnthropicLLM"
+  #   context_window: 200000
+  #   provider: "anthropic"
+  #   temperature: 0.7
+  #   max_tokens: 2000
+  #   description: "Anthropic Claude 모델"
+
+  # gemini-pro:
+  #   class: "GeminiLLM"
+  #   context_window: 32000
+  #   provider: "google"
+  #   temperature: 0.7
+  #   max_tokens: 2000
+  #   description: "Google Gemini 모델"
+
+# 실험 모드 설정
+experiment:
+  intent_classification: "gpt-4o-mini"  # 실험할 모델로 변경
+  summarization: "gpt-4o"
+  compare_models: false  # true시 여러 모델 동시 비교
