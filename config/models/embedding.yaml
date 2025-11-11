@@ -1,0 +1,42 @@
+# Embedding Models Configuration
+
+default: "mpnet-multilingual"
+
+models:
+  mpnet-multilingual:
+    class: "MPNetEmbedder"
+    dimension: 768
+    model_path: "paraphrase-multilingual-mpnet-base-v2"
+    batch_size: 32
+    device: "cpu"
+    description: "현재 사용 중인 다국어 임베딩 모델 (한국어 지원)"
+
+  # 추후 추가할 모델들 (실험용)
+  # bge-m3:
+  #   class: "BGEM3Embedder"
+  #   dimension: 1024
+  #   model_path: "BAAI/bge-m3"
+  #   batch_size: 16
+  #   device: "cuda"
+  #   description: "BAAI의 고성능 다국어 모델"
+
+  # e5-multilingual:
+  #   class: "E5Embedder"
+  #   dimension: 768
+  #   model_path: "intfloat/multilingual-e5-large"
+  #   batch_size: 32
+  #   device: "cpu"
+  #   description: "Microsoft E5 다국어 모델"
+
+  # openai-3-small:
+  #   class: "OpenAIEmbedder"
+  #   dimension: 1536
+  #   model: "text-embedding-3-small"
+  #   api_based: true
+  #   description: "OpenAI API 기반 임베딩 (유료)"
+
+# 실험 모드 설정
+experiment:
+  model: "mpnet-multilingual"  # 실험할 모델로 변경 가능
+  cache_embeddings: true
+  benchmark_enabled: false

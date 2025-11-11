@@ -56,7 +56,7 @@ User Question
 └─────────────────────────────────────┘
      ↓
 ┌─────────────────────────────────────┐
-│  4. RAG 검색 (Qdrant + PubMed API)  │
+│  4. RAG 검색 (ChromaDB + PubMed API) │
 └─────────────────────────────────────┘
      ↓
 ┌─────────────────────────────────────┐
@@ -115,7 +115,7 @@ MockinJay/
 
 - **Python** 3.10 이상
 - **Redis** 7.0 이상 (선택사항, 캐싱 기능)
-- **Qdrant** 1.7 이상 (Vector DB)
+- **ChromaDB** 0.4.22 이상 (Vector DB - Python 패키지, 별도 서버 불필요!)
 - **LLM API 키**: OpenAI 또는 Anthropic Claude
 
 ### 1. 저장소 클론
@@ -166,10 +166,9 @@ OPENAI_API_KEY="sk-..."           # OpenAI API 키
 ANTHROPIC_API_KEY="sk-ant-..."    # Anthropic Claude API 키
 LLM_PROVIDER="openai"              # openai 또는 anthropic
 
-# Vector DB (Qdrant)
-QDRANT_HOST="localhost"
-QDRANT_PORT="6333"
-QDRANT_API_KEY=""                  # 로컬 실행 시 불필요
+# Vector DB (ChromaDB - 별도 서버 불필요!)
+CHROMA_PERSIST_DIRECTORY="data/chroma_db"
+CHROMA_COLLECTION_PREFIX="mockinjay"
 
 # Redis (선택사항)
 REDIS_HOST="localhost"
@@ -181,21 +180,18 @@ REDIS_DB="0"
 PUBMED_EMAIL="your-email@example.com"
 ```
 
-### 5. Qdrant 시작 (Vector DB)
+### 5. Vector DB 준비 (ChromaDB)
 
-**Option 1: Docker로 실행 (권장)**
+**ChromaDB는 별도 설치가 필요 없습니다!**
 
-```bash
-docker run -p 6333:6333 -p 6334:6334 \
-    -v $(pwd)/qdrant_storage:/qdrant/storage \
-    qdrant/qdrant
-```
-
-**Option 2: 로컬 바이너리 실행**
+Python 패키지로 설치되어 있으며, 서버 시작 시 자동으로 초기화됩니다.
 
 ```bash
-# Qdrant 다운로드 및 실행
-# https://qdrant.tech/documentation/quick-start/
+# ChromaDB 패키지 확인
+pip list | grep chromadb
+
+# 데이터 저장 위치 (자동 생성)
+ls -la data/chroma_db/
 ```
 
 ### 6. Redis 시작 (선택사항)
@@ -392,7 +388,7 @@ tests/
 
 - **Framework**: FastAPI 0.109+
 - **LLM**: OpenAI GPT-4o / Anthropic Claude 3.5 Sonnet
-- **Vector DB**: Qdrant
+- **Vector DB**: ChromaDB (로컬, 서버 불필요)
 - **Cache**: Redis
 - **Embedding**: OpenAI text-embedding-3-small
 - **Testing**: pytest, pytest-asyncio
@@ -418,14 +414,17 @@ tests/
 
 ## 🐛 문제 해결
 
-### 1. Qdrant 연결 실패
+### 1. ChromaDB 데이터 문제
 
 ```bash
-# Qdrant가 실행 중인지 확인
-curl http://localhost:6333/collections
+# ChromaDB 데이터 디렉토리 확인
+ls -la data/chroma_db/
 
-# Docker 로그 확인
-docker logs <qdrant-container-id>
+# 컬렉션 확인 (Python)
+python -c "import chromadb; client = chromadb.PersistentClient(path='data/chroma_db'); print(client.list_collections())"
+
+# 데이터 재로드
+python scripts/load_qa_data.py
 ```
 
 ### 2. Redis 연결 실패
@@ -452,11 +451,12 @@ source venv/bin/activate
 ### 4. 임베딩 데이터 없음
 
 ```bash
-# 벡터 DB 컬렉션 확인
-curl http://localhost:6333/collections
+# ChromaDB 컬렉션 확인
+python -c "import chromadb; client = chromadb.PersistentClient(path='data/chroma_db'); print(client.list_collections())"
 
 # 데이터 업로드
-python scripts/upload_embeddings.py
+python scripts/load_qa_data.py
+python scripts/load_paper_data.py
 ```
 
 ---

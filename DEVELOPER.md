@@ -32,8 +32,8 @@ git --version
 # Redis (선택)
 redis-server --version
 
-# Qdrant (Vector DB)
-docker --version
+# ChromaDB (Vector DB - Python 패키지)
+pip list | grep chromadb
 ```
 
 ### IDE 설정 (VS Code 권장)
@@ -126,7 +126,7 @@ MockinJay/
 │   │   ├── intent.py          # 의도 분류 서비스
 │   │   ├── rag_search.py      # RAG 검색 서비스
 │   │   ├── summarizer.py      # 문서 요약 서비스
-│   │   ├── vector_db.py       # 벡터 DB 서비스 (Qdrant)
+│   │   ├── vector_db.py       # 벡터 DB 서비스 (ChromaDB)
 │   │   ├── llm_client.py      # LLM API 클라이언트
 │   │   ├── cache.py           # Redis 캐싱 서비스
 │   │   ├── performance.py     # 성능 모니터링 서비스
@@ -644,15 +644,17 @@ def mock_openai():
 
 ```python
 @pytest.fixture
-def mock_qdrant():
-    with patch('qdrant_client.QdrantClient') as mock:
+def mock_chromadb():
+    with patch('chromadb.PersistentClient') as mock:
         mock_instance = mock.return_value
-        mock_instance.search.return_value = [
-            type('obj', (object,), {
-                'payload': {'title': 'Test Document'},
-                'score': 0.95
-            })
-        ]
+        mock_collection = type('obj', (object,), {
+            'query': lambda **kwargs: {
+                'documents': [['Test Document']],
+                'metadatas': [[{'title': 'Test Document'}]],
+                'distances': [[0.05]]
+            }
+        })
+        mock_instance.get_or_create_collection.return_value = mock_collection
         yield mock_instance
 ```
 
@@ -922,11 +924,11 @@ def get_intent_examples(intent: str) -> List[Dict]:
 **벡터 검색 최적화**:
 
 ```python
-# HNSW 인덱스 사용 (Qdrant 기본)
+# ChromaDB는 기본적으로 HNSW 인덱스 사용
 # 검색 파라미터 튜닝
 search_params = {
-    "hnsw_ef": 128,  # 검색 정확도
-    "exact": False    # 근사 검색
+    "n_results": 5,      # 반환할 결과 수
+    "include": ["documents", "metadatas", "distances"]  # 포함할 필드
 }
 ```
 
@@ -992,21 +994,21 @@ for attempt in range(3):
         await asyncio.sleep(1)
 ```
 
-#### 2. Vector DB 연결 실패
+#### 2. Vector DB 데이터 문제
 
-**증상**: `QdrantConnectionError`
+**증상**: ChromaDB 데이터가 로드되지 않음
 
 **해결**:
 
 ```bash
-# Qdrant 상태 확인
-curl http://localhost:6333/collections
+# ChromaDB 데이터 디렉토리 확인
+ls -la data/chroma_db/
 
-# Docker 재시작
-docker restart <qdrant-container>
+# 컬렉션 확인 (Python)
+python -c "import chromadb; client = chromadb.PersistentClient(path='data/chroma_db'); print(client.list_collections())"
 
-# 로그 확인
-docker logs <qdrant-container>
+# 데이터 재로드
+python scripts/load_qa_data.py
 ```
 
 #### 3. Redis 연결 실패
@@ -1096,7 +1098,7 @@ def profile_function():
 
 - **FastAPI 문서**: https://fastapi.tiangolo.com/
 - **Pydantic 문서**: https://docs.pydantic.dev/
-- **Qdrant 문서**: https://qdrant.tech/documentation/
+- **ChromaDB 문서**: https://docs.trychroma.com/
 - **pytest 문서**: https://docs.pytest.org/
 - **Python 타입 힌팅**: https://docs.python.org/3/library/typing.html
 

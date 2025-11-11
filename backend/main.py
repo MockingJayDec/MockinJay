@@ -61,7 +61,7 @@ app = FastAPI(
 
 - **Framework**: FastAPI + Pydantic
 - **LLM**: OpenAI GPT-4o / Anthropic Claude 3.5 Sonnet
-- **Vector DB**: Qdrant
+- **Vector DB**: ChromaDB (로컬, 서버 불필요)
 - **Cache**: Redis
 - **Embedding**: OpenAI text-embedding-3-small
 

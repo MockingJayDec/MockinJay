@@ -109,6 +109,19 @@ embeddings/
 *.faiss
 *.index
 
+# ChromaDB Files
+data/chroma_db/*.bin
+data/chroma_db/**/*.bin
+data/chroma_db/**/*.pkl
+*.chroma
+
+# Large Data Files
+data/raw/*.jsonl
+data/raw/*.json
+data/raw/*.csv
+data/processed/*.jsonl
+data/processed/*.json
+
 # Model Files (large ML models)
 models/
 *.pth

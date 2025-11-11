@@ -1,0 +1,65 @@
+# Experiment Environment Configuration
+
+environment: "experiment"
+
+models:
+  embedding:
+    default: "mpnet-multilingual"
+    # 실험할 모델로 변경 가능:
+    # default: "bge-m3"
+    # default: "e5-multilingual"
+    cache_enabled: true
+    device: "cpu"
+
+  llm:
+    intent_classification: "gpt-4o-mini"
+    # 실험할 LLM으로 변경 가능:
+    # intent_classification: "claude-3-5-sonnet"
+    # intent_classification: "gemini-pro"
+    summarization: "gpt-4o"
+    temperature: 0.7
+
+agents:
+  orchestrator:
+    strategy: "sequential"
+    timeout: 120  # 실험 시 더 긴 timeout
+
+  logging:
+    level: "DEBUG"
+    log_agent_execution: true
+    log_llm_calls: true
+    save_to_file: true
+
+vector_db:
+  provider: "chromadb"
+  persist_directory: "data/chroma_db"
+  cache_enabled: true
+
+benchmarking:
+  enabled: true
+  save_results: true
+  results_dir: "backend/experiments/results"
+
+  metrics:
+    - "accuracy"
+    - "latency"
+    - "cost"
+    - "mrr"
+    - "ndcg"
+
+  comparison:
+    embedding_models:
+      - "mpnet-multilingual"
+      # - "bge-m3"
+      # - "e5-multilingual"
+
+    llm_models:
+      - "gpt-4o-mini"
+      - "gpt-4o"
+      # - "claude-3-5-sonnet"
+
+performance:
+  enable_profiling: true
+  track_latency: true
+  save_traces: true
+  max_concurrent_requests: 5  # 실험 시 낮게 설정

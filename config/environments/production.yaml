@@ -1,0 +1,43 @@
+# Production Environment Configuration
+
+environment: "production"
+
+models:
+  embedding:
+    default: "mpnet-multilingual"
+    cache_enabled: true
+    device: "cpu"
+
+  llm:
+    intent_classification: "gpt-4o-mini"
+    summarization: "gpt-4o"  # production에서는 강력한 모델 사용
+    temperature: 0.5  # 더 안정적인 출력
+
+agents:
+  orchestrator:
+    strategy: "sequential"
+    timeout: 30  # seconds
+
+  logging:
+    level: "INFO"
+    log_agent_execution: false
+    log_llm_calls: false
+
+vector_db:
+  provider: "chromadb"
+  persist_directory: "data/chroma_db"
+  cache_enabled: true
+
+performance:
+  enable_profiling: false
+  track_latency: true
+  max_concurrent_requests: 50
+
+safety:
+  rate_limiting:
+    enabled: true
+    max_requests_per_minute: 60
+
+  content_filtering:
+    enabled: true
+    block_inappropriate: true

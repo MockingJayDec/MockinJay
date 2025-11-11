@@ -1,14 +1,22 @@
 """
 환경 변수 및 설정 관리
 """
-from pydantic_settings import BaseSettings
-from typing import List
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import field_validator, model_validator
+from typing import List, Union, Any
 import os
 from pathlib import Path
 
 
 class Settings(BaseSettings):
     """애플리케이션 설정"""
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=True,
+        extra='ignore'  # .env 파일의 추가 필드 무시
+    )
 
     # 프로젝트 기본 정보
     PROJECT_NAME: str = "MockinJay"
@@ -17,12 +25,13 @@ class Settings(BaseSettings):
 
     # API 설정
     API_V1_PREFIX: str = "/api/v1"
-    ALLOWED_ORIGINS: List[str] = [
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "http://127.0.0.1:3000",
-        "http://127.0.0.1:5173",
-    ]
+    ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:5173"
+
+    def get_allowed_origins_list(self) -> List[str]:
+        """ALLOWED_ORIGINS를 리스트로 반환"""
+        if isinstance(self.ALLOWED_ORIGINS, str):
+            return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(',') if origin.strip()]
+        return []
 
     # LLM API 키
     OPENAI_API_KEY: str = ""
@@ -60,11 +69,6 @@ class Settings(BaseSettings):
     DATA_DIR: Path = BASE_DIR / "data"
     MODELS_DIR: Path = BASE_DIR / "models"
     LOGS_DIR: Path = BASE_DIR / "logs"
-
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-        case_sensitive = True
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
